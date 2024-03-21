@@ -9,14 +9,14 @@ function processE2u($pageContent, $word) {
     function isArticleMain($article, $word) {
         $header = $article->getElementsByTagName('b')[0]?->textContent;
         if(!$header) return false;
-        // echo '<p>[' . $header . ']</p>';
+        
         $header = explode('(-', $header)[0];
         $header = preg_split('/[0-9]/', $header)[0];
         $header = trim($header);
         $header = str_replace('|', '', $header);
         $header = str_replace('́', '', $header);
-        // echo '<p>' . $header . '*</p>';
-        return $header === $word;
+        
+        return strtolower($header) === strtolower($word);
     }
 
     $articles = ['main' => [], 'other' => [], 'context' => []];

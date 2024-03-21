@@ -12,14 +12,13 @@ require_once 'processGlosbe.php';
 
 try {
     $target = explode('/', $_SERVER['REQUEST_URI'])[2] ?? '';
-    // echo $target, '<br>';
+
     $dic = explode('?', $target)[0];
-    // echo $dic;
+
     $word = $_GET['word'] ?? '';
 
     if($dic === 'e2u') {
         $word = str_replace(' ', '+', $word);
-        // $url = 'https://e2u.org.ua/s?w=' . $word . '&dicts=all&main_only=on';
         $url = 'https://e2u.org.ua/s?w=' . $word . '&dicts=all&highlight=on&filter_lines=on';
     } elseif($dic === 'glosbe') {
         $word = str_replace(' ', '%20', $word);
